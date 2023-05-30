@@ -42,7 +42,8 @@ export default function Start() {
 
       <Link to="register">register</Link>
 
-      {user.role === "ADMIN" && <Link to="admin/page">Admin Page</Link>}
+      {user.role === "ADMIN" && <Link to="/admin/dashboard">Admin Dashboard</Link>}
+      
 
       {user && (
         <>
