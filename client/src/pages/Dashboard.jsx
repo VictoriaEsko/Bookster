@@ -13,6 +13,7 @@ export default function Dashboard() {
   const [books, setBooks] = useState([]);
   const [value, setValue] = useState(0);
   const [modal, setModal] = useState(false)
+  const [open, setOpen] = useState(false)
 
   
   const [title, setTitle] = useState("")
@@ -82,6 +83,23 @@ export default function Dashboard() {
     console.log(res)
   }
 
+  const handleNewBooks = async (e) => {
+    e.preventDefault();
+    const res = await axios.post("http://localhost:3005/admin/books", {
+      title, author, quantity
+    });
+    setTitle("");
+    setAuthor("");
+    setQuantity("");
+    localStorage.setItem("books", res.data.books)
+    console.log(res)
+    location.reload()
+  };
+  const cancelBtn = async (e) => {
+    e.preventDefault();
+    location.reload();
+  }
+
 
   console.log(title + author + quantity)
   
@@ -110,15 +128,15 @@ export default function Dashboard() {
           <button onClick={() => setModal(!modal)}>Add new book</button>
             {modal && 
             <div>
-                <h2>Add/Edit books</h2>
+                <h2>Add books</h2>
                 <label for="title">Title: </label>
                 <input type="text" placeholder="write title here ..." name="title" onChange={(e) => setTitle(e.target.value)}/>
                 <label for="author">Author: </label>
                 <input type="text" placeholder="write author here ..." name="author" onChange={(e) => setAuthor(e.target.value)}/>
                 <label for="quantity">Quantity: </label>
                 <input type="text" placeholder="write quantity here ..." name="quantity" onChange={(e) => setQuantity(e.target.value)}/>
-                <button type="submit" onClick={handleSubmit}>Add/Edit</button>
-                <button type="button">cancel</button>
+                <button type="submit" onClick={handleNewBooks}>Add</button>
+                <button type="reset" onClick={cancelBtn}>cancel</button>
             </div>}
           {books &&
             books.map((book) => (
@@ -127,6 +145,16 @@ export default function Dashboard() {
                 <p>{book.author}</p>
                 <p>{book.quantity}</p>
                 <button type="button" onClick={() => handleDeleteBook(book)}>Delete</button>
+                <button onClick={() => setOpen(!open)}>Edit book</button>
+                {open && 
+                <div>
+                  <p>{book.title}</p>
+                  <input type="text" placeholder="Title" name="title" onChange={(e) => setTitle(e.target.value)}/>
+                  <input type="text" placeholder="Author" name="author" onChange={(e) => setTitle(e.target.value)}/>
+                  <input type="text" placeholder="Quantity" name="quantity" onChange={(e) => setTitle(e.target.value)}/>
+                  <button type="submit">Save</button>
+                </div>
+                }
               </div>
             ))}
         </Typography>
