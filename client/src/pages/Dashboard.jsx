@@ -1,3 +1,10 @@
+/**
+ * Author: Victoria Esko
+ * Date: 31 May
+ * 
+ * The "Dashboard" React component is an admin page with tabs for managing users and books. It imports React, axios, and Material-UI components. The component handles user and book operations, includes a form for adding/editing books, and fetches data on component mount. It ensures authorization and provides a user-friendly interface for administrators to perform CRUD operations on users and books.
+ */
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -38,7 +45,7 @@ export default function Dashboard() {
     setBooks(res.data);
     // console.log(res);
   };
-  
+
   const handlePromoteUser = (users) => {
     axios.put("http://localhost:3005/admin/users", {
       username: users.username,
@@ -84,6 +91,8 @@ export default function Dashboard() {
 
 
   console.log(title + author + quantity)
+
+  if (user.role !== "ADMIN") return "You are not authenticated!"
   
   return (
     <>
