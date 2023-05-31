@@ -57,7 +57,7 @@ export default function Start() {
         <div key={book.title}>
         <p>{book.title}</p>
         <p>{book.author}</p>
-        <p>{book.quantity}</p>
+        <p>{book.quantity}</p>      
         </div>
       ))}
     </>

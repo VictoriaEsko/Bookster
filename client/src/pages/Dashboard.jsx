@@ -7,39 +7,71 @@ import Typography from "@mui/material/Typography";
 import TabPanel from "../Components/TabPanel";
 
 export default function Dashboard() {
+
+  
   const [user, setUser] = useState("");
   const [books, setBooks] = useState([]);
   const [value, setValue] = useState(0);
   const [modal, setModal] = useState(false)
+
   
   const [title, setTitle] = useState("")
   const [author, setAuthor] = useState("")
   const [quantity, setQuantity] = useState("")
-
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const handleChangeBooks = () => {
-
-  }
+  
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${localStorage.getItem("accessToken")}`;
 
   const fetchUsers = async () => {
     const res = await axios.get("http://localhost:3005/admin/users");
     setUser(res.data);
-    console.log(res);
+    // console.log(res);
   };
 
   const fetchBooks = async () => {
     const res = await axios.get("http://localhost:3005/library/books");
     setBooks(res.data);
-    console.log(res);
+    // console.log(res);
+  };
+  
+  const handlePromoteUser = (users) => {
+    axios.put("http://localhost:3005/admin/users", {
+      username: users.username,
+    });
+
+    fetchUsers()
   };
 
+  const handleDeleteUser = (users) => {
+    const config = {
+      data: {
+        username: users.username,
+      },
+    };
+    axios.delete("http://localhost:3005/admin/users", config);
+
+    fetchUsers();
+  };
+
+  const handleDeleteBook = (book) => {
+    const config = {
+      data: {
+        title: book.title,
+      },
+    };
+    axios.delete("http://localhost:3005/admin/books", config)
+
+    fetchBooks();
+  };
+
+
   useEffect(() => {
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${localStorage.getItem("accessToken")}`;
+    
     fetchUsers();
     fetchBooks();
   }, []);
@@ -55,7 +87,6 @@ export default function Dashboard() {
   
   return (
     <>
-      <Link to="/">Back</Link>
       <h1>Admin-Page</h1>
       <Tabs value={value} onChange={handleChange}>
         <Tab label="Users" />
@@ -68,6 +99,8 @@ export default function Dashboard() {
               <div key={users.username}>
                 <p>{users.username}</p>
                 <p>{users.role}</p>
+                <button type="button" onClick={() => handlePromoteUser(users)}>Promote</button>
+                <button type="button" onClick={() => handleDeleteUser(users)}>Delete</button>
               </div>
             ))}
         </Typography>
@@ -93,6 +126,7 @@ export default function Dashboard() {
                 <p>{book.title}</p>
                 <p>{book.author}</p>
                 <p>{book.quantity}</p>
+                <button type="button" onClick={() => handleDeleteBook(book)}>Delete</button>
               </div>
             ))}
         </Typography>
