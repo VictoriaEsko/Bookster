@@ -1,8 +1,15 @@
+/**
+ * Author: Victoria Esko
+ * Date: 31 May
+ * 
+ * The "RegisterForm" React component represents a registration form. It imports React, axios, and the useNavigate hook. The component manages the username and password inputs using useState. When the signup button is clicked, it sends a POST request to the server for user registration. Upon successful registration, it clears the stored username and access token, resets the inputs, and navigates to the home page.
+ */
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginForm() {
+export default function RegisterForm() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("")

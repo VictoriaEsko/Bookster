@@ -1,3 +1,10 @@
+/**
+ * Author: Victoria Esko
+ * Date: 31 May
+ *
+ * The "Dashboard" React component is an admin page with tabs for managing users and books. It imports React, axios, and Material-UI components. The component handles user and book operations, includes a form for adding/editing books, and fetches data on component mount. It ensures authorization and provides a user-friendly interface for administrators to perform CRUD operations on users and books.
+ */
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -7,23 +14,21 @@ import Typography from "@mui/material/Typography";
 import TabPanel from "../Components/TabPanel";
 
 export default function Dashboard() {
-
-  
   const [user, setUser] = useState("");
   const [books, setBooks] = useState([]);
   const [value, setValue] = useState(0);
-  const [modal, setModal] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  
-  const [title, setTitle] = useState("")
-  const [author, setAuthor] = useState("")
-  const [quantity, setQuantity] = useState("")
-  
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [selectedBook, setSelectedBook] = useState(null)
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  
+
   axios.defaults.headers.common[
     "Authorization"
   ] = `Bearer ${localStorage.getItem("accessToken")}`;
@@ -39,13 +44,13 @@ export default function Dashboard() {
     setBooks(res.data);
     // console.log(res);
   };
-  
+
   const handlePromoteUser = (users) => {
     axios.put("http://localhost:3005/admin/users", {
       username: users.username,
     });
 
-    fetchUsers()
+    fetchUsers();
   };
 
   const handleDeleteUser = (users) => {
@@ -65,44 +70,62 @@ export default function Dashboard() {
         title: book.title,
       },
     };
-    axios.delete("http://localhost:3005/admin/books", config)
+    axios.delete("http://localhost:3005/admin/books", config);
 
     fetchBooks();
   };
 
-
   useEffect(() => {
-    
     fetchUsers();
     fetchBooks();
   }, []);
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const res = await axios.post("http://localhost:3005/admin/books", title, author, quantity);
-    console.log(res)
+
+  const handleOpenNewBooks = () => {
+    setTitle("")
+    setAuthor("")
+    setQuantity("")
+    setModal(true)
   }
 
   const handleNewBooks = async (e) => {
     e.preventDefault();
     const res = await axios.post("http://localhost:3005/admin/books", {
-      title, author, quantity
+      title,
+      author,
+      quantity,
     });
     setTitle("");
     setAuthor("");
     setQuantity("");
-    localStorage.setItem("books", res.data.books)
-    console.log(res)
-    location.reload()
+    console.log(res);
   };
-  const cancelBtn = async (e) => {
-    e.preventDefault();
-    location.reload();
+
+  const handleOpenEditBook = (book) => {
+    setSelectedBook(book)
+    setOpen(true)
+
+    setTitle(book.title)
+    setAuthor(book.author)
+    setQuantity(book.quantity)
+  };
+
+  const handleEditBook = () => {
+    const currentBook = {title, author, quantity}
+    axios.put("http://localhost:3005/admin/books", {
+      previous: selectedBook,
+      current: currentBook,
+    });
+
+    console.log(currentBook)
+    
+    fetchBooks();
   }
 
+  const handleCancelBook = () => {
+    setOpen(false)
+    setSelectedBook([])
+  };
 
-  console.log(title + author + quantity)
-  
   return (
     <div className="dash-page">
       <h1 className="dash-h1">Admin-Page</h1>
@@ -117,32 +140,54 @@ export default function Dashboard() {
               <div key={users.username}>
                 <p>{users.username}</p>
                 <p>{users.role}</p>
-                <button type="button" onClick={() => handlePromoteUser(users)} className="btn-promote">Promote</button>
-                <button type="button" onClick={() => handleDeleteUser(users)} className="btn-promote">Delete</button>
+                <button type="button" onClick={() => handlePromoteUser(users)} className="btn-promote">
+                  Promote
+                </button>
+                <button type="button" onClick={() => handleDeleteUser(users)} className="btn-promote">
+                  Delete
+                </button>
               </div>
             ))}
         </Typography>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Typography component={"span"} className="booksTab">
-          <button onClick={() => setModal(!modal)} className="add-book-btn">Add new book</button>
-            {modal && 
+          <button onClick={handleOpenNewBooks} className="add-book-btn">Add new book</button>
+          {modal && (
             <div className="add-books-page">
-                <h2 className="books-h2">Add books</h2>
-                <label for="title" className="title-label label">Title: </label>
-                <input type="text" placeholder="write title here ..." name="title" onChange={(e) => setTitle(e.target.value)}
-                className="input-title input"/>
-                <label for="author" className="author-label label">Author: </label>
-                <input type="text" placeholder="write author here ..." name="author" onChange={(e) => setAuthor(e.target.value)}
-                className="input-author input"/>
-                <label for="quantity" className="qty-label label">Quantity: </label>
-                <input type="text" placeholder="write quantity here ..." name="quantity" onChange={(e) => setQuantity(e.target.value)}
-                className="input-qty input"/>
-                <div className="buttons">
-                <button type="submit" onClick={handleNewBooks} className="add-btn">Add</button>
-                <button type="reset" onClick={cancelBtn} className="cancel-books">cancel</button>
+              <h2 className="books-h2">Add books</h2>
+              <label htmlFor="title" className="title-label label">Title: </label>
+              <input
+                type="text"
+                placeholder="write title here ..."
+                name="title"
+                onChange={(e) => setTitle(e.target.value)}
+                className="input-title input"
+              />
+              <label htmlFor="author" className="author-label label">Author: </label>
+              <input
+                type="text"
+                placeholder="write author here ..."
+                name="author"
+                onChange={(e) => setAuthor(e.target.value)}
+                className="input-author input"
+              />
+              <label htmlFor="quantity" className="qty-label label">Quantity: </label>
+              <input
+                type="text"
+                placeholder="write quantity here ..."
+                name="quantity"
+                onChange={(e) => setQuantity(e.target.value)}
+                className="input-qty input"
+              />
+              <div className="buttons">
+                <button type="submit" onClick={handleNewBooks} className="add-btn">
+                Add
+              </button>
+              <button type="reset" onClick={() => setModal(false)} className="cancel-books">cancel</button>
                 </div>
-            </div>}
+            </div>
+          )}
           {books &&
             books.map((book) => (
               <div key={book.title} className="all-books dash-books">
@@ -162,6 +207,37 @@ export default function Dashboard() {
                 }
               </div>
             ))}
+                {open && <div>
+                  <h2>Add books</h2>
+                  <label htmlFor="title">Title: </label>
+                  <input
+                    type="text"
+                    placeholder="write title here ..."
+                    name="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <label htmlFor="author">Author: </label>
+                  <input
+                    type="text"
+                    placeholder="write author here ..."
+                    name="author"
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                  />
+                  <label htmlFor="quantity">Quantity: </label>
+                  <input
+                    type="text"
+                    placeholder="write quantity here ..."
+                    name="quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                  <button type="submit" onClick={handleEditBook}>
+                    Add
+                  </button>
+                  <button type="reset" onClick={handleCancelBook}>cancel</button>
+                </div>}
         </Typography>
       </TabPanel>
     </div>
