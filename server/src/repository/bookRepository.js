@@ -44,12 +44,21 @@ const patchBook = (oldBook, newBook) => {
   return ctx;
 }
 
+// const deleteBook = (book) => {
+//   const ctx = getBookContext();
+//   ctx.books = ctx.books.filter(entry => entry.title !== book.title);
+//   ctx.version = crypto.randomUUID();
+// // 
+//   return ctx;
+// }
+
 const deleteBook = (book) => {
   const ctx = getBookContext();
+  const item = ctx.books.find(entry => entry.title === book.title);
   ctx.books = ctx.books.filter(entry => entry.title !== book.title);
   ctx.version = crypto.randomUUID();
-
-  return ctx;
+// 
+  return {ctx, item};
 }
 
 export default {getBooks, searchBooks, getBook, addBook, patchBook, deleteBook };

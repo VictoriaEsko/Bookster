@@ -1,3 +1,10 @@
+/**
+ * Author: Victoria Esko
+ * Date: 31 May
+ * 
+ * The "LoginForm" React component is a basic login form. It imports React, axios, and the useNavigate hook from React Router. The component manages the username and password inputs using useState. When the login button is clicked, it sends a POST request to the server with the provided credentials. Upon successful login, the access token is stored in local storage, and the user is redirected to the home page.
+ */
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
