@@ -1,69 +1,145 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+/* Start page */
+.start-page{
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  margin-bottom: 5em;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.sign-out-btn, .login-btn, .register-btn{
+  color: black;
+  text-decoration: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: .1em;
+  font-size: 1.1em;
+  margin: .3em;
+}
+.sign-out-btn{
+  width: 5em;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: .3em;
+  padding: .1em .2em .1em .2em;
+}
+.login-btn, .register-btn{
+  width: 5em;
+  border: 1px solid black;
+  border-radius: .3em;
+  text-align: center;
+  padding: .1em .2em .1em .2em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.welcome-txt{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2em;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.role-txt{
+  margin: .2em;
 }
+
+.dashboard-btn{
+  color: black;
+  text-decoration: none;
+  border: 1px solid black;
+  width: 9em;
+  border-radius: .3em;
+  padding: .1em;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.1em;
+}
+
+.all-books{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(203, 203, 203);
+  padding: .5em 0;
+}
+
+.box{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  display: flex;
+}
+
+.books-title, .books-author, .books-qty{
+  width: 33%;
+  text-align: center;
+}
+
+/* LOGIN */ 
+.form{
+  width: 40%;
+  background-color: gray;
+  padding: 2em 3em 15em 3em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: .5em;
+}
+.login-page, .register-page{
+  display: flex;
+  justify-content: center;
+}
+.username-label, .password-label{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 1em;
+}
+.input-login, .input-register{
+  padding: .5em 4em .5em 1em;
+  border: 1px solid black;
+  border-radius: .2em;
+}
+.input-field{
+  margin: 1em ;
+}
+.btn-login, .btn-cancel-login, .btn-register, .btn-cancel-register{
+  padding: 1em;
+  margin: 1em;
+}
+
+/* DASHBOARD */
+.dash-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dash-h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 3em;
+}
+.dash-books{
+  padding: 2em;
+}
+.label{
+  font-size: 1.5em;
+}
+.input{
+  padding: .6em 1em;
+}
+.add-books-page{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.add-btn, .cancel-books{
+  padding: 1em;
+  width: 40%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: .3em;
+  border: 1px solid black;
+}
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
+.edit-btn, .delete-btn{
+  margin: .2em;
+}
+

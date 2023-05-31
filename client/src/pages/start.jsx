@@ -33,33 +33,39 @@ export default function Start() {
 
 
   return (
-    <>
+    <div className="start-page">
       {user ? (
-        <button onClick={handelLogout}>sign out</button>
+        <button className="sign-out-btn" onClick={handelLogout}>sign out</button>
       ) : (
-        <Link to="login">login</Link>
+        <Link to="login" className="login-btn">login</Link>
       )}
 
-      <Link to="register">register</Link>
+      <Link to="register" className="register-btn">register</Link>
 
-      {user.role === "ADMIN" && <Link to="/admin/dashboard">Admin Dashboard</Link>}
+      {user.role === "ADMIN" && <Link to="/admin/dashboard" className="dashboard-btn">Admin Dashboard</Link>}
       
 
       {user && (
         <>
-        <h1>Välkommen  {user.username}!</h1>
-        <p>Du är en: {user.role}</p>
-        <p>Du har {user.password} som lösenord</p>
+        <h1 className="welcome-txt">Välkommen  {user.username}!</h1>
+        <p className="role-txt">Du är en: {user.role}</p>
+        <p className="role-txt">Du har {user.password} som lösenord</p>
         </>
       )}
-
+      <div className="container">
+        <div className="box">
+        <p className="start-header books-title">Title</p>
+        <p className="start-header books-author">Author</p>
+        <p className="start-header books-qty">Availability</p>
+        </div>
       {books && books.map((book) => (
-        <div key={book.title}>
-        <p>{book.title}</p>
-        <p>{book.author}</p>
-        <p>{book.quantity}</p>      
+        <div className="start all-books" key={book.title}>
+        <p className="books-title">{book.title}</p>
+        <p className="books-author">{book.author}</p>
+        <p className="books-qty">{book.quantity}</p>     
         </div>
       ))}
-    </>
+      </div>
+    </div>
   );
 }

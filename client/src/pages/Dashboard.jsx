@@ -104,11 +104,11 @@ export default function Dashboard() {
   console.log(title + author + quantity)
   
   return (
-    <>
-      <h1>Admin-Page</h1>
+    <div className="dash-page">
+      <h1 className="dash-h1">Admin-Page</h1>
       <Tabs value={value} onChange={handleChange}>
-        <Tab label="Users" />
-        <Tab label="Books" />
+        <Tab label="Users" className="user-label" />
+        <Tab label="Books" className="books-label" />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Typography component={"span"} className="usersTab">
@@ -117,35 +117,40 @@ export default function Dashboard() {
               <div key={users.username}>
                 <p>{users.username}</p>
                 <p>{users.role}</p>
-                <button type="button" onClick={() => handlePromoteUser(users)}>Promote</button>
-                <button type="button" onClick={() => handleDeleteUser(users)}>Delete</button>
+                <button type="button" onClick={() => handlePromoteUser(users)} className="btn-promote">Promote</button>
+                <button type="button" onClick={() => handleDeleteUser(users)} className="btn-promote">Delete</button>
               </div>
             ))}
         </Typography>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Typography component={"span"} className="booksTab">
-          <button onClick={() => setModal(!modal)}>Add new book</button>
+          <button onClick={() => setModal(!modal)} className="add-book-btn">Add new book</button>
             {modal && 
-            <div>
-                <h2>Add books</h2>
-                <label for="title">Title: </label>
-                <input type="text" placeholder="write title here ..." name="title" onChange={(e) => setTitle(e.target.value)}/>
-                <label for="author">Author: </label>
-                <input type="text" placeholder="write author here ..." name="author" onChange={(e) => setAuthor(e.target.value)}/>
-                <label for="quantity">Quantity: </label>
-                <input type="text" placeholder="write quantity here ..." name="quantity" onChange={(e) => setQuantity(e.target.value)}/>
-                <button type="submit" onClick={handleNewBooks}>Add</button>
-                <button type="reset" onClick={cancelBtn}>cancel</button>
+            <div className="add-books-page">
+                <h2 className="books-h2">Add books</h2>
+                <label for="title" className="title-label label">Title: </label>
+                <input type="text" placeholder="write title here ..." name="title" onChange={(e) => setTitle(e.target.value)}
+                className="input-title input"/>
+                <label for="author" className="author-label label">Author: </label>
+                <input type="text" placeholder="write author here ..." name="author" onChange={(e) => setAuthor(e.target.value)}
+                className="input-author input"/>
+                <label for="quantity" className="qty-label label">Quantity: </label>
+                <input type="text" placeholder="write quantity here ..." name="quantity" onChange={(e) => setQuantity(e.target.value)}
+                className="input-qty input"/>
+                <div className="buttons">
+                <button type="submit" onClick={handleNewBooks} className="add-btn">Add</button>
+                <button type="reset" onClick={cancelBtn} className="cancel-books">cancel</button>
+                </div>
             </div>}
           {books &&
             books.map((book) => (
-              <div key={book.title}>
-                <p>{book.title}</p>
-                <p>{book.author}</p>
-                <p>{book.quantity}</p>
-                <button type="button" onClick={() => handleDeleteBook(book)}>Delete</button>
-                <button onClick={() => setOpen(!open)}>Edit book</button>
+              <div key={book.title} className="all-books dash-books">
+                <p className="books-title">{book.title}</p>
+                <p className="books-author">{book.author}</p>
+                <p className="books-qty">{book.quantity}</p>
+                <button type="button" onClick={() => handleDeleteBook(book)} className="delete-btn">Delete</button>
+                <button onClick={() => setOpen(!open)} className="edit-btn">Edit book</button>
                 {open && 
                 <div>
                   <p>{book.title}</p>
@@ -159,6 +164,6 @@ export default function Dashboard() {
             ))}
         </Typography>
       </TabPanel>
-    </>
+    </div>
   );
 }
