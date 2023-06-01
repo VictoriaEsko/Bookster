@@ -53,8 +53,8 @@ export default function LoginForm() {
              value={password}
              onChange={(e) => setPassword(e.target.value)} className="input-login"
            />
-           <text>No account? Sign up here!</text>
         </div>
+           <p>No account? Sign up here!</p>
 
          <button data-testid="login-btn" type="submit" onClick={handleLogin} className="btn-login">
            Login

@@ -3,9 +3,33 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 5em;
+
+  background-color: #a8d9f3;
+}
+.sign-out-btn{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
-.sign-out-btn, .login-btn, .register-btn{
+.btn{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  color: #010034;
+  background-color: #4cb8f1;
+  border: 1px solid #125cc4;
+  margin: 1em .3em;
+  padding: .3em .3em;
+  letter-spacing: .1em;
+  font-size: 1.1em;
+  border-radius: .3em;
+}
+
+ /* .sign-out-btn, .login-btn, .register-btn{
   color: black;
   text-decoration: none;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -26,18 +50,9 @@
   border-radius: .3em;
   text-align: center;
   padding: .1em .2em .1em .2em;
-}
+} 
 
-.welcome-txt{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 2em;
-}
-
-.role-txt{
-  margin: .2em;
-}
-
-.dashboard-btn{
+ .dashboard-btn{
   color: black;
   text-decoration: none;
   border: 1px solid black;
@@ -47,6 +62,45 @@
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.1em;
+}  */
+
+.welcome-txt{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2em;
+  align-self: center;
+  color: #010034;
+}
+
+.role-txt{
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  color: #010034;
+}
+
+
+.search-bar-container{
+  display: flex;
+  height: 2em;
+  padding: 1em 0;
+  margin-left: .5em;
+  
+}
+
+.search-bar{
+  width: 20%;
+  border: none;
+  border-radius: .3em;
+}
+
+.search-bar-btn{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  margin-left: .3em;
+  color: #010034;
+  background-color: #4cb8f1;
+  border: 1px solid #125cc4;
+  border-radius: .3em;
 }
 
 .all-books{
@@ -54,20 +108,29 @@
   display: flex;
   flex-direction: row;
   background-color: rgb(203, 203, 203);
-  padding: .5em 0;
+  padding: .2em 2em;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.books{
+  max-width: 5em;
+  align-self: center;
+}
+
+.quantity{
+  align-self: center;
 }
 
 .box{
-  display: grid;
-  grid-template-columns: auto auto auto;
   background-color: gray;
   color: #fff;
-  text-align: center;
   display: flex;
+  justify-content: space-between;
+  padding: .2em 2em;
 }
 
 .books-title, .books-author, .books-qty{
-  width: 33%;
   text-align: center;
 }
 

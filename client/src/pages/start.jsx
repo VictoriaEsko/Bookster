@@ -65,46 +65,50 @@ export default function Start() {
   console.log(quantity)
   return (
     <div className="start-page">
+    <div className="important-btn">
       {user ? (
-        <button className="sign-out-btn" onClick={handelLogout}>sign out</button>
+        <button className="sign-out-btn btn" onClick={handelLogout}>sign out</button>
       ) : (
-        <Link to="login" className="login-btn">login</Link>
+        <Link to="login" className="login-btn btn">login</Link>
       )}
 
-      <Link to="register" className="register-btn">register</Link>
+      <Link to="register" className="register-btn btn">register</Link>
 
-      {user.role === "ADMIN" && <Link to="/admin/dashboard" className="dashboard-btn">Admin Dashboard</Link>}
+      {user.role === "ADMIN" && <Link to="/admin/dashboard" className="dashboard-btn btn">Admin Dashboard</Link>}
+    </div>
       
 
       {user && (
         <>
         <h1 className="welcome-txt">Välkommen  {user.username}!</h1>
         <p className="role-txt">Du är en: {user.role}</p>
-        <p className="role-txt">Du har {user.password} som lösenord</p>
         </>
       )}
+      <div className="search-bar-container"> 
+      <input className="search-bar" type="text" placeholder="search book..." value={query} onChange={(e) => setQuery(e.target.value)} />
+      <button className="search-bar-btn" onClick={handleSearchBooks}>search</button>
+      </div>
       <div className="container">
         <div className="box">
         <p className="start-header books-title">Title</p>
         <p className="start-header books-author">Author</p>
         <p className="start-header books-qty">Availability</p>
+        <p className="start-header books-qty">Order</p>
         </div>
       </div>
-      <input type="text" placeholder="search book..." value={query} onChange={(e) => setQuery(e.target.value)} />
-      <button onClick={handleSearchBooks}>search</button>
 
       {books && books.map((book) => (
         <div className="start all-books" key={book.title}>
-          <p>{book.title}</p>
-          <p>{book.author}</p>
-          <p>{book.quantity}</p>  
+          <p className="books">{book.title}</p>
+          <p className="books">{book.author}</p>
+          <p className="books">{book.quantity}</p>  
           {user && (
             <div className='quantity'>
              <button  onClick={() => handleOpenPurchase(book)}>
-                open
+                Buy
              </button>
             </div>
-          )};
+          )}
           
         </div>
         
