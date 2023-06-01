@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest"
+// import userEvent from "@testing-library/user-event";
 
 describe('handleRegister', () => {
     test('handleRegister is a function', () => {
