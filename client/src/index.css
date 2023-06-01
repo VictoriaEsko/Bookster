@@ -1,35 +1,35 @@
 /* Start page */
-.start-page{
+.start-page {
   display: flex;
   flex-direction: column;
   margin-bottom: 5em;
 
   background-color: #a8d9f3;
 }
-.sign-out-btn{
+.sign-out-btn {
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
-.btn{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.btn {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-decoration: none;
   color: #010034;
   background-color: #4cb8f1;
   border: 1px solid #125cc4;
-  margin: 1em .3em;
-  padding: .3em .3em;
-  letter-spacing: .1em;
+  margin: 1em 0.3em;
+  padding: 0.3em 0.3em;
+  letter-spacing: 0.1em;
   font-size: 1.1em;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
- /* .sign-out-btn, .login-btn, .register-btn{
+/* .sign-out-btn, .login-btn, .register-btn{
   color: black;
   text-decoration: none;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -64,145 +64,154 @@
   font-size: 1.1em;
 }  */
 
-.welcome-txt{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.welcome-txt {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 2em;
   align-self: center;
   color: #010034;
 }
 
-.role-txt{
+.role-txt {
   margin: 0;
   padding: 0;
   align-self: center;
   color: #010034;
 }
 
-
-.search-bar-container{
+.search-bar-container {
   display: flex;
   height: 2em;
   padding: 1em 0;
-  margin-left: .5em;
-  
+  margin-left: 0.5em;
 }
 
-.search-bar{
+.search-bar {
   width: 20%;
   border: none;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
-.search-bar-btn{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.search-bar-btn {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-decoration: none;
-  margin-left: .3em;
+  margin-left: 0.3em;
   color: #010034;
   background-color: #4cb8f1;
   border: 1px solid #125cc4;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
-.all-books{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.all-books {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: row;
   background-color: rgb(203, 203, 203);
-  padding: .2em 2em;
+  padding: 0.2em 2em;
   justify-content: space-between;
   border-bottom: 1px solid black;
 }
 
-.books{
+.books {
   max-width: 5em;
   align-self: center;
 }
 
-.quantity{
+.quantity {
   align-self: center;
 }
 
-.box{
+.box {
   background-color: gray;
   color: #fff;
   display: flex;
   justify-content: space-between;
-  padding: .2em 2em;
+  padding: 0.2em 2em;
 }
 
-.books-title, .books-author, .books-qty{
+.books-title,
+.books-author,
+.books-qty {
   text-align: center;
 }
 
-/* LOGIN */ 
-.form{
+/* LOGIN */
+.form {
   width: 40%;
   background-color: gray;
   padding: 2em 3em 15em 3em;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border-radius: .5em;
+  border-radius: 0.5em;
 }
-.login-page, .register-page{
+.login-page,
+.register-page {
   display: flex;
   justify-content: center;
 }
-.username-label, .password-label{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.username-label,
+.password-label {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   margin: 1em;
 }
-.input-login, .input-register{
-  padding: .5em 4em .5em 1em;
+.input-login,
+.input-register {
+  padding: 0.5em 4em 0.5em 1em;
   border: 1px solid black;
-  border-radius: .2em;
+  border-radius: 0.2em;
 }
-.input-field{
-  margin: 1em ;
+.input-field {
+  margin: 1em;
 }
-.btn-login, .btn-cancel-login, .btn-register, .btn-cancel-register{
+.btn-login,
+.btn-cancel-login,
+.btn-register,
+.btn-cancel-register {
   padding: 1em;
   margin: 1em;
 }
 
 /* DASHBOARD */
-.dash-page{
+.dash-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.dash-h1{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.dash-h1 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 3em;
 }
-.dash-books{
+.dash-books {
   padding: 2em;
 }
-.label{
+.label {
   font-size: 1.5em;
 }
-.input{
-  padding: .6em 1em;
+.input {
+  padding: 0.6em 1em;
 }
-.add-books-page{
+.add-books-page {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 }
-.add-btn, .cancel-books{
+.add-btn,
+.cancel-books {
   padding: 1em;
   width: 40%;
   margin-top: 1em;
   margin-bottom: 1em;
-  border-radius: .3em;
+  border-radius: 0.3em;
   border: 1px solid black;
 }
-.buttons{
+.buttons {
   display: flex;
   justify-content: space-around;
 }
-.edit-btn, .delete-btn{
-  margin: .2em;
+.edit-btn,
+.delete-btn {
+  margin: 0.2em;
 }
-

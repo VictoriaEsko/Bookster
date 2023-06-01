@@ -67,7 +67,7 @@ export default function Start() {
     <div className="start-page">
     <div className="important-btn">
       {user ? (
-        <button className="sign-out-btn btn" onClick={handelLogout}>sign out</button>
+        <button data-testid="logout" className="sign-out-btn btn" onClick={handelLogout}>sign out</button>
       ) : (
         <Link to="login" className="login-btn btn">login</Link>
       )}
